@@ -17,7 +17,6 @@ class ViewController: UITableViewController {
     var fileContent: String!
     var allContacts = [String]()
     var contacts = [Contact]()
-    var contactsTableTemp = [Contact]()
     var initials = [Initial]()
     var initialsArray: [String] {
         get {
@@ -40,7 +39,6 @@ class ViewController: UITableViewController {
         
         readContentFileToArray()
         countSections()
-        contactsTableTemp = contacts
     }
     
     
@@ -52,19 +50,14 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         let letterOfSection = initialsArray[indexPath.section]
-        let contactIndex = contactsTableTemp.firstIndex(where: {$0.name.hasPrefix(letterOfSection)})!
-        cell.textLabel?.text = contactsTableTemp[contactIndex].name
-        contactsTableTemp.remove(at: contactIndex)
-        /*for contact in contactsTemp {
-            print("\(contact.name)")
-        }
-        print("-------")*/
+        let firstIndex = contacts.firstIndex(where: {$0.name.hasPrefix(letterOfSection)})!
+        let indexOfName = contacts.index(indexPath.row, offsetBy: firstIndex)
+        cell.textLabel?.text = contacts[indexOfName].name
         return cell
     }
     
    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        //return "A"
         return initialsArray[section]
     }
      
@@ -141,6 +134,6 @@ class ViewController: UITableViewController {
             initials.append(initial)
         }
     }
-
+    
 }
 
