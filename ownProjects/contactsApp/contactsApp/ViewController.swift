@@ -12,6 +12,8 @@ class ViewController: UITableViewController {
     let cellId = "Contact"
     let fileName = "contactsPopulate"
     let fileType = "txt"
+    let navigationTitle = "Contacts"
+    
     var fileContent: String!
     var allContacts = [String]()
     var contacts = [Contact]()
@@ -29,6 +31,9 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = navigationTitle
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         let path = Bundle.main.path(forResource: fileName, ofType: fileType) // file path for file "data.txt"
         fileContent = try! String(contentsOfFile: path!, encoding: .utf8)
