@@ -15,6 +15,9 @@ class ContacsInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = "Name of Contact"
+        navigationItem.largeTitleDisplayMode = .never
         if let name = contactsNameText {
             contactsName.text = name
         }
