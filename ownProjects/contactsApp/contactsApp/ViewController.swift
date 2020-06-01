@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UITableViewController {
     let cellId = "Contact"
+    let contacsInfoVCId = "ContactsInfo"
     let fileName = "contactsPopulate"
     let fileType = "txt"
     let navigationTitle = "Contacts"
@@ -42,17 +43,18 @@ class ViewController: UITableViewController {
     }
     
     
-    /*
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: contacsInfoVCId) as? ContacsInfoViewController
+        if let newView = vc {
+            vc?.contactsNameText = retrieveNameFromRow(with: indexPath)
+            navigationController?.pushViewController(newView, animated: true)
+        }
         
-    }*/
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        let letterOfSection = initialsArray[indexPath.section]
-        let firstIndex = contacts.firstIndex(where: {$0.name.hasPrefix(letterOfSection)})!
-        let indexOfName = contacts.index(indexPath.row, offsetBy: firstIndex)
-        cell.textLabel?.text = contacts[indexOfName].name
+        cell.textLabel?.text = retrieveNameFromRow(with: indexPath)
         return cell
     }
     
@@ -133,6 +135,14 @@ class ViewController: UITableViewController {
         if let initial = nameInitial {
             initials.append(initial)
         }
+    }
+    
+    
+    private func retrieveNameFromRow(with indexPath: IndexPath) -> String {
+        let letterOfSection = initialsArray[indexPath.section]
+        let firstIndex = contacts.firstIndex(where: {$0.name.hasPrefix(letterOfSection)})!
+        let indexOfName = contacts.index(indexPath.row, offsetBy: firstIndex)
+        return contacts[indexOfName].name
     }
     
 }

@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -34,6 +35,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Deg-kL-9gR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="901.44927536231887" y="139.95535714285714"/>
+        </scene>
+        <!--Contacs Info View Controller-->
+        <scene sceneID="yGw-Fd-fix">
+            <objects>
+                <viewController storyboardIdentifier="ContactsInfo" id="QSs-dA-sgW" customClass="ContacsInfoViewController" customModule="contactsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Bi-jw-sDg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Azv-nj-RwT" userLabel="ContactsName">
+                                <rect key="frame" x="20" y="126" width="374" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="Ja2-vJ-KL4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Azv-nj-RwT" firstAttribute="leading" secondItem="3Bi-jw-sDg" secondAttribute="leadingMargin" id="8eL-BE-UL3"/>
+                            <constraint firstItem="Azv-nj-RwT" firstAttribute="top" secondItem="C2T-c8-llb" secondAttribute="top" constant="82" id="Rmf-zW-5lT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="C2T-c8-llb"/>
+                    </view>
+                    <connections>
+                        <outlet property="contactsName" destination="Azv-nj-RwT" id="h8L-0I-XLc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UMP-Jh-UhU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1798.5507246376812" y="139.95535714285714"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HX7-EG-fB4">
