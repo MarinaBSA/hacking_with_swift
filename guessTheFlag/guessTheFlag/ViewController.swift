@@ -18,7 +18,6 @@ class ViewController: UIViewController {
     var score = 0
     var correctAnswer = 0
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

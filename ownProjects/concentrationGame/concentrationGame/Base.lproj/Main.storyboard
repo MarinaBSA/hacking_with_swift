@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5VN-bj-K3g">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="concentrationGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8F-D4-Wi7">
+                                <rect key="frame" x="59" y="341" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="CA3-wL-kdA"/>
+                                    <constraint firstAttribute="width" constant="150" id="j0n-sQ-W3o"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="emojiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vIv-Ac-U4l"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqe-yB-7OQ">
+                                <rect key="frame" x="228" y="341" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="8NY-Hv-fwk"/>
+                                    <constraint firstAttribute="height" constant="150" id="vUp-CS-bvk"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="emojiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HZO-sx-0rX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daa-vj-M4T">
+                                <rect key="frame" x="59" y="514" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="H6O-aL-MZi"/>
+                                    <constraint firstAttribute="width" constant="150" id="OtB-cP-UhK"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="emojiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y7d-xs-ekA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6F8-Rk-rHH">
+                                <rect key="frame" x="228" y="687" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="9bT-65-I3Y"/>
+                                    <constraint firstAttribute="height" constant="150" id="YAk-cy-oxf"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="emojiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KYd-Lt-JI2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WvP-Qr-ywD">
+                                <rect key="frame" x="59" y="687" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="LGy-gv-xMY"/>
+                                    <constraint firstAttribute="height" constant="150" id="uiJ-J2-GBr"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="emojiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xOA-Ze-uzb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1l-M8-Pg6">
+                                <rect key="frame" x="228" y="514" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="A8q-YN-oiJ"/>
+                                    <constraint firstAttribute="height" constant="150" id="saC-5D-YNL"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="emojiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jFC-JU-vey"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kDk-nB-aEg">
+                                <rect key="frame" x="228" y="166" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="Nwj-Db-6VU"/>
+                                    <constraint firstAttribute="width" constant="150" id="oL0-qI-1vB"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="emojiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mS8-bX-Zfw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moj-9V-yaL">
+                                <rect key="frame" x="59" y="166" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="ayY-8Q-5yw"/>
+                                    <constraint firstAttribute="height" constant="150" id="vsQ-fz-vTl"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="emojiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="naj-Ko-x6n"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="J1l-M8-Pg6" secondAttribute="trailing" constant="36" id="7ID-vO-c91"/>
+                            <constraint firstItem="y8F-D4-Wi7" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="59" id="9Im-Yp-bV1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kDk-nB-aEg" secondAttribute="trailing" constant="36" id="9uq-9b-qco"/>
+                            <constraint firstItem="moj-9V-yaL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="59" id="ABr-5S-EhY"/>
+                            <constraint firstItem="J1l-M8-Pg6" firstAttribute="top" secondItem="nqe-yB-7OQ" secondAttribute="bottom" constant="23" id="E8Z-nC-vWK"/>
+                            <constraint firstItem="nqe-yB-7OQ" firstAttribute="top" secondItem="kDk-nB-aEg" secondAttribute="bottom" constant="25" id="Krr-b5-mdM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6F8-Rk-rHH" secondAttribute="trailing" constant="36" id="N4b-Nx-6d9"/>
+                            <constraint firstItem="y8F-D4-Wi7" firstAttribute="top" secondItem="moj-9V-yaL" secondAttribute="bottom" constant="25" id="PRg-72-RBf"/>
+                            <constraint firstItem="6F8-Rk-rHH" firstAttribute="top" secondItem="J1l-M8-Pg6" secondAttribute="bottom" constant="23" id="SZ0-92-psH"/>
+                            <constraint firstItem="moj-9V-yaL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="78" id="ZdL-3S-qiV"/>
+                            <constraint firstItem="kDk-nB-aEg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="78" id="igJ-xQ-P3X"/>
+                            <constraint firstItem="WvP-Qr-ywD" firstAttribute="top" secondItem="daa-vj-M4T" secondAttribute="bottom" constant="23" id="mj6-ha-w5R"/>
+                            <constraint firstItem="daa-vj-M4T" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="59" id="pKh-pF-1hL"/>
+                            <constraint firstItem="daa-vj-M4T" firstAttribute="top" secondItem="y8F-D4-Wi7" secondAttribute="bottom" constant="23" id="pf8-Gy-tQb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nqe-yB-7OQ" secondAttribute="trailing" constant="36" id="uvz-yG-Abe"/>
+                            <constraint firstItem="WvP-Qr-ywD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="59" id="y0t-uQ-rUe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="rUj-F5-xju"/>
+                    <connections>
+                        <outletCollection property="allEmojis" destination="WvP-Qr-ywD" collectionClass="NSMutableArray" id="GSk-R3-12P"/>
+                        <outletCollection property="allEmojis" destination="J1l-M8-Pg6" collectionClass="NSMutableArray" id="dJx-pF-DDb"/>
+                        <outletCollection property="allEmojis" destination="6F8-Rk-rHH" collectionClass="NSMutableArray" id="Hum-Tr-pCG"/>
+                        <outletCollection property="allEmojis" destination="daa-vj-M4T" collectionClass="NSMutableArray" id="UjF-rM-a3Z"/>
+                        <outletCollection property="allEmojis" destination="kDk-nB-aEg" collectionClass="NSMutableArray" id="1pp-cT-t8O"/>
+                        <outletCollection property="allEmojis" destination="nqe-yB-7OQ" collectionClass="NSMutableArray" id="nHp-XG-5TO"/>
+                        <outletCollection property="allEmojis" destination="y8F-D4-Wi7" collectionClass="NSMutableArray" id="OqE-qe-TEW"/>
+                        <outletCollection property="allEmojis" destination="moj-9V-yaL" collectionClass="NSMutableArray" id="e7E-Am-8qr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1042.0289855072465" y="138.61607142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iRK-6G-TiN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5VN-bj-K3g" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TvH-eM-D7r">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="pWv-en-hgs"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="q9r-Us-lV4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="138.61607142857142"/>
+        </scene>
+    </scenes>
+</document>
