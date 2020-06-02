@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     }
     var cardsUp = [UIButton]()
     var emojiCards = [EmojiCard]()
+    var areCardsUp = false
     
     @IBOutlet var allEmojis: [UIButton]!
     
@@ -39,20 +40,26 @@ class ViewController: UIViewController {
         cardsUp.append(sender)
         //  save last tag and check if the last tag and the current tag belong to the same tuple
         if(twoCardsOpen) {
-            for card in emojiCards {
-                if (card.representingTuple.0 == cardsUp[0].tag && card.representingTuple.1 == cardsUp[1].tag) ||
-                    (card.representingTuple.1 == cardsUp[0].tag && card.representingTuple.0 == cardsUp[1].tag) {
-                    title = "RIGHT"
-                    break
-                } else {
-                    title = "WRONG"
-                }
+            let firstTag = cardsUp[0].tag
+            let secTag = cardsUp[1].tag
+            let result = emojiCards.contains(where: {
+                ($0.representingTuple.0 == firstTag && $0.representingTuple.1 == secTag) ||
+                    ($0.representingTuple.0 == secTag && $0.representingTuple.1 == firstTag)
+                
+            })
+            if (result) {
+                self.title = "RIGHT"
+                self.cardsUp.removeAll()
+                print("right")
+                return
             }
-            // turn turned up cards down again
-            //perform(#selector(turnUpCardsDown), with: nil, afterDelay: 3)
+            
+            title = "WRONG"
+            print("wrong")
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
                 self.turnUpCardsDown()
                 self.cardsUp.removeAll()
+                self.areCardsUp = !self.areCardsUp
             }
         }
     }

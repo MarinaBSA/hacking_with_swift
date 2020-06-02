@@ -15,8 +15,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8F-D4-Wi7">
-                                <rect key="frame" x="59" y="341" width="150" height="150"/>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8F-D4-Wi7">
+                                <rect key="frame" x="48" y="336" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="CA3-wL-kdA"/>
                                     <constraint firstAttribute="width" constant="150" id="j0n-sQ-W3o"/>
@@ -25,8 +25,8 @@
                                     <action selector="emojiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vIv-Ac-U4l"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqe-yB-7OQ">
-                                <rect key="frame" x="228" y="341" width="150" height="150"/>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqe-yB-7OQ">
+                                <rect key="frame" x="217" y="336" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="8NY-Hv-fwk"/>
                                     <constraint firstAttribute="height" constant="150" id="vUp-CS-bvk"/>
@@ -35,8 +35,8 @@
                                     <action selector="emojiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HZO-sx-0rX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daa-vj-M4T">
-                                <rect key="frame" x="59" y="514" width="150" height="150"/>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daa-vj-M4T">
+                                <rect key="frame" x="48" y="509" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="H6O-aL-MZi"/>
                                     <constraint firstAttribute="width" constant="150" id="OtB-cP-UhK"/>
@@ -45,8 +45,8 @@
                                     <action selector="emojiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y7d-xs-ekA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6F8-Rk-rHH">
-                                <rect key="frame" x="228" y="687" width="150" height="150"/>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6F8-Rk-rHH">
+                                <rect key="frame" x="217" y="682" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="9bT-65-I3Y"/>
                                     <constraint firstAttribute="height" constant="150" id="YAk-cy-oxf"/>
@@ -55,8 +55,8 @@
                                     <action selector="emojiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KYd-Lt-JI2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WvP-Qr-ywD">
-                                <rect key="frame" x="59" y="687" width="150" height="150"/>
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WvP-Qr-ywD">
+                                <rect key="frame" x="48" y="682" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="LGy-gv-xMY"/>
                                     <constraint firstAttribute="height" constant="150" id="uiJ-J2-GBr"/>
@@ -65,8 +65,8 @@
                                     <action selector="emojiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xOA-Ze-uzb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1l-M8-Pg6">
-                                <rect key="frame" x="228" y="514" width="150" height="150"/>
+                            <button opaque="NO" tag="7" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J1l-M8-Pg6">
+                                <rect key="frame" x="217" y="509" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="A8q-YN-oiJ"/>
                                     <constraint firstAttribute="height" constant="150" id="saC-5D-YNL"/>
@@ -75,8 +75,8 @@
                                     <action selector="emojiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jFC-JU-vey"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kDk-nB-aEg">
-                                <rect key="frame" x="228" y="166" width="150" height="150"/>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kDk-nB-aEg">
+                                <rect key="frame" x="217" y="161" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="Nwj-Db-6VU"/>
                                     <constraint firstAttribute="width" constant="150" id="oL0-qI-1vB"/>
@@ -85,8 +85,8 @@
                                     <action selector="emojiPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mS8-bX-Zfw"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moj-9V-yaL">
-                                <rect key="frame" x="59" y="166" width="150" height="150"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="moj-9V-yaL">
+                                <rect key="frame" x="48" y="161" width="150" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="ayY-8Q-5yw"/>
                                     <constraint firstAttribute="height" constant="150" id="vsQ-fz-vTl"/>
