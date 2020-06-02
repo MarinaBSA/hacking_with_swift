@@ -18,14 +18,12 @@ class ViewController: UIViewController {
     }
     var cardsUp = [UIButton]()
     var emojiCards = [EmojiCard]()
-    var areCardsUp = false
     
     @IBOutlet var allEmojis: [UIButton]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpCards()
-        showEmojisOnScreen()
         // Do any additional setup after loading the view.
     }
     
@@ -50,16 +48,13 @@ class ViewController: UIViewController {
             if (result) {
                 self.title = "RIGHT"
                 self.cardsUp.removeAll()
-                print("right")
                 return
             }
             
             title = "WRONG"
-            print("wrong")
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
                 self.turnUpCardsDown()
                 self.cardsUp.removeAll()
-                self.areCardsUp = !self.areCardsUp
             }
         }
     }
@@ -98,6 +93,7 @@ class ViewController: UIViewController {
                 }
             }
         }
+        print(emojiCards)
     }
 
 
