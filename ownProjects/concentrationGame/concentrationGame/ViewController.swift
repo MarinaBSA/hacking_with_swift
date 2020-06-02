@@ -93,7 +93,7 @@ class ViewController: UIViewController {
                 }
             }
         }
-        print(emojiCards)
+        //print(emojiCards)
     }
 
 
