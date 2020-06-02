@@ -28,7 +28,7 @@ class ViewController: UIViewController {
     var cardsUp = [UIButton]()
     var emojiCards = [EmojiCard]()
     let rightGuess = "RIGHT"
-    let wrongGuess = "RIGHT"
+    let wrongGuess = "WRONG"
     
     @IBOutlet var allEmojis: [UIButton]!
     
