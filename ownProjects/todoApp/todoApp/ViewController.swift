@@ -10,18 +10,18 @@ import UIKit
 
 extension String {
     func appendToEOF(_ fileURL: URL,_ fileInput: String) throws {
-            if let fileHandle = FileHandle(forWritingAtPath: fileURL.path) {
-                defer {
-                    fileHandle.closeFile()
-                }
-                fileHandle.seekToEndOfFile()
-                if let input = ("\n" + fileInput).data(using: .utf8) {
-                    fileHandle.write(input)
-                }
+        if let fileHandle = FileHandle(forWritingAtPath: fileURL.path) {
+            defer {
+                fileHandle.closeFile()
             }
-            else {
-                print("Could not append text to end of file")
+            fileHandle.seekToEndOfFile()
+            if let input = ("\n" + fileInput).data(using: .utf8) {
+                fileHandle.write(input)
             }
+        }
+        else {
+            print("Could not append text to end of file")
+        }
     }
 }
 
@@ -29,15 +29,29 @@ class ViewController: UITableViewController {
 
     let fileName = "items"
     let extensionName = "txt"
+    let cellID = "itemCell"
+    lazy var fileURL =  getDocumentsDirectory().appendingPathComponent(fileName).appendingPathExtension(extensionName)
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+
         title = "To do"
         navigationController?.navigationBar.prefersLargeTitles = true
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
         barButtonSystemItem: .add, target: self, action: #selector(showAlertToAskForInput))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: .trash, target: self, action: #selector(showAlertToDeleteTable))
     }
     
+    @objc func showAlertToDeleteTable() {
+        let alert = UIAlertController(title: "Warning", message: "Do you really want to delete this list?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: deleteWholeListFromFile))
+        present(alert, animated: true)
+    }
+
     
     @objc
     private func showAlertToAskForInput() {
@@ -60,15 +74,29 @@ class ViewController: UITableViewController {
         present(alert, animated: true)
     }
     
+    private func deleteWholeListFromFile(action: UIAlertAction) {
+        let fm = FileManager.default
+        if fm.isDeletableFile(atPath: fileURL.path) {
+            do {
+                try fm.removeItem(at: fileURL)
+                tableView.reloadData()
+            } catch {
+                print(error)
+                print("Culd not delete file")
+            }
+            
+        }
+        
+    }
 
     private func writeUserInputToFile(itemToAdd: String) {
         let fm = FileManager.default
-        let fileURL = getDocumentsDirectory().appendingPathComponent(fileName).appendingPathExtension(extensionName)
         if !fm.fileExists(atPath: fileURL.path) {
             do {
                 try itemToAdd.write(to: fileURL, atomically: true, encoding: .utf8)
                 print("File successfully created")
             } catch {
+                print(error)
                 print("File could not be created")
             }
         } else {
@@ -78,13 +106,12 @@ class ViewController: UITableViewController {
                 print(error)
             }
         }
-        print("FILE CONTENT:    \(readingFromFile())")
-
+        tableView.reloadData()
     }
     
     private func readingFromFile() -> [String] {
         let fm = FileManager.default
-        if let data = fm.contents(atPath: getDocumentsDirectory().appendingPathComponent(fileName).appendingPathExtension(extensionName).path) {
+        if let data = fm.contents(atPath: fileURL.path) {
             let contentsArray = String(decoding: data, as: UTF8.self).split(separator: "\n")
             return contentsArray.map({String($0)})
         }
@@ -95,5 +122,17 @@ class ViewController: UITableViewController {
     private func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
+    }
+    
+    // TableViewController
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return readingFromFile().count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
+        cell.textLabel?.text = readingFromFile()[indexPath.row]
+        return cell
     }
 }
