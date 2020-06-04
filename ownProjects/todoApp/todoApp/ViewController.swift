@@ -82,7 +82,7 @@ class ViewController: UITableViewController {
                 tableView.reloadData()
             } catch {
                 print(error)
-                print("Culd not delete file")
+                print("Could not delete file")
             }
         }
     }
@@ -117,7 +117,7 @@ class ViewController: UITableViewController {
         return paths[0]
     }
     
-    // TableViewController
+    // TableView
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return readingFromFile().count
