@@ -30,7 +30,7 @@ class ViewController: UITableViewController {
     let fileName = "items"
     let extensionName = "txt"
     let cellID = "itemCell"
-    lazy var fileURL =  getDocumentsDirectory().appendingPathComponent(fileName).appendingPathExtension(extensionName)
+    lazy var fileURL = getDocumentsDirectory().appendingPathComponent(fileName).appendingPathExtension(extensionName)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,14 +45,15 @@ class ViewController: UITableViewController {
             barButtonSystemItem: .trash, target: self, action: #selector(showAlertToDeleteTable))
     }
     
-    @objc func showAlertToDeleteTable() {
-        let alert = UIAlertController(title: "Warning", message: "Do you really want to delete this list?", preferredStyle: .alert)
+    @objc 
+    private func showAlertToDeleteTable() {
+        let alert = UIAlertController(title: "Warning", message: "Do you really want to delete this list?", 
+                                      preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "No", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "Yes", style: .destructive, handler: deleteWholeListFromFile))
         present(alert, animated: true)
     }
 
-    
     @objc
     private func showAlertToAskForInput() {
         let alert = UIAlertController(title: "New item", message: "", preferredStyle: .alert)
@@ -69,7 +70,6 @@ class ViewController: UITableViewController {
             if let text = alert?.textFields![0].text! {
                 self?.writeUserInputToFile(itemToAdd: text)
             }
-            
         }))
         present(alert, animated: true)
     }
@@ -111,7 +111,6 @@ class ViewController: UITableViewController {
         }
         return [String]()
     }
-    
     
     private func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
