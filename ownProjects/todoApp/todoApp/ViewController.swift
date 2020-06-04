@@ -29,6 +29,9 @@ class ViewController: UITableViewController {
     let fileName = "items"
     let extensionName = "txt"
     let cellID = "itemCell"
+    var sections = 1
+    var itemsArray = [String]()
+
     lazy var fileURL = getDocumentsDirectory().appendingPathComponent(fileName).appendingPathExtension(extensionName)
 
     override func viewDidLoad() {
@@ -38,10 +41,12 @@ class ViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-        barButtonSystemItem: .add, target: self, action: #selector(showAlertToAskForInput))
+            barButtonSystemItem: .add, target: self, action: #selector(showAlertToAskForInput))
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .trash, target: self, action: #selector(showAlertToDeleteTable))
+        
+        readingFromFile()
     }
     
     @objc 
@@ -78,7 +83,17 @@ class ViewController: UITableViewController {
         if fm.isDeletableFile(atPath: fileURL.path) {
             do {
                 try fm.removeItem(at: fileURL)
-                tableView.reloadData()
+                updateItemsArray(item: nil)
+                sections -= 1
+                if let index = tableView.indexPathsForVisibleRows {
+                    // Must delete rows, can't delete the whole section in order to do that I had to change the
+                    // number of sections to 0 before calling deleteRows, since the section still exists
+                    // after the rows have been deleted.
+                    // The method I had to override in order to do that:
+                    // numberOfSections <- returns the number of sections, so after deletion the variable it returns
+                    // must be equals 0
+                    tableView.deleteRows(at: index, with: .automatic)
+                }
             } catch {
                 print(error)
                 print("Could not delete file")
@@ -99,16 +114,27 @@ class ViewController: UITableViewController {
         } else {
             itemToAdd.appendToEOF(fileURL, itemToAdd)
         }
-        tableView.reloadData()
+        let numOfRows = tableView.numberOfRows(inSection: 0)
+        updateItemsArray(item: itemToAdd)
+        
+        tableView.insertRows(at: [IndexPath(row: numOfRows , section: 0)], with: .automatic)
     }
     
-    private func readingFromFile() -> [String] {
+    // How to observe a method?
+    private func readingFromFile() {
         let fm = FileManager.default
         if let data = fm.contents(atPath: fileURL.path) {
             let contentsArray = String(decoding: data, as: UTF8.self).split(separator: "\n")
-            return contentsArray.map({String($0)})
+            itemsArray = contentsArray.map({String($0)})
         }
-        return [String]()
+    }
+    
+    private func updateItemsArray(item: String?) {
+        if let itemToUpdate = item {
+          itemsArray.append(itemToUpdate)
+            return
+        }
+        itemsArray.removeAll()
     }
     
     private func getDocumentsDirectory() -> URL {
@@ -119,12 +145,23 @@ class ViewController: UITableViewController {
     // TableView
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return readingFromFile().count
+        return itemsArray.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellID, for: indexPath)
-        cell.textLabel?.text = readingFromFile()[indexPath.row]
+        cell.textLabel?.text = itemsArray[indexPath.row]
         return cell
     }
+    
+    /*
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            objects.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        } else if editingStyle == .insert {
+            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        }
+    }*/
 }
