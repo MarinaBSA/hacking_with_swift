@@ -9,7 +9,7 @@
 import UIKit
 
 extension String {
-    func appendToEOF(_ fileURL: URL,_ fileInput: String) throws {
+    func appendToEOF(_ fileURL: URL,_ fileInput: String) {
         if let fileHandle = FileHandle(forWritingAtPath: fileURL.path) {
             defer {
                 fileHandle.closeFile()
@@ -61,7 +61,7 @@ class ViewController: UITableViewController {
             textField.placeholder = "Apples"
         })
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        // How could I access alert from a separate method instead of a closure
+        // How could I access alert from a separate method instead of a closure?
         //alert.addAction(UIAlertAction(title: "Enter", style: .destructive, handler: addItem))
         
         alert.addAction(UIAlertAction(title: "Enter", style: .destructive, handler: {
@@ -84,9 +84,7 @@ class ViewController: UITableViewController {
                 print(error)
                 print("Culd not delete file")
             }
-            
         }
-        
     }
 
     private func writeUserInputToFile(itemToAdd: String) {
@@ -100,11 +98,7 @@ class ViewController: UITableViewController {
                 print("File could not be created")
             }
         } else {
-            do {
-                try itemToAdd.appendToEOF(fileURL, itemToAdd)
-            } catch {
-                print(error)
-            }
+            itemToAdd.appendToEOF(fileURL, itemToAdd)
         }
         tableView.reloadData()
     }
