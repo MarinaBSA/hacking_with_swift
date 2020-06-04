@@ -18,8 +18,7 @@ extension String {
             if let input = ("\n" + fileInput).data(using: .utf8) {
                 fileHandle.write(input)
             }
-        }
-        else {
+        } else {
             print("Could not append text to end of file")
         }
     }
