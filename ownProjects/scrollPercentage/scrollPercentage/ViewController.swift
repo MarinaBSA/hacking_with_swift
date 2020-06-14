@@ -40,11 +40,28 @@ class ViewController: UIViewController {
         progressView = UIProgressView(progressViewStyle: .default)
         progressView.sizeToFit()
         progressBarButton = UIBarButtonItem(customView: progressView)
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.url), options: .new, context: nil)
         
         toolbarItems = [progressBarButton]
         navigationController?.isToolbarHidden = false
     }
-    
+    // Pay attentation that you don't pick the static method
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "URL" {
+            var verifiedWebsite = false
+            for website in  websitesDict {
+                if website.value.contains(webView.url!.host!) {
+                    verifiedWebsite = true
+                    break
+                }
+            }
+            if !verifiedWebsite {
+                let warning = UIAlertController(title: "WARNING", message: "You are going to an unverified website", preferredStyle: .alert)
+                warning.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(warning, animated: true)
+            }
+        }
+    }
     
     @objc
     func showAlertToOpenWebsite() {
@@ -61,7 +78,6 @@ class ViewController: UIViewController {
             return
         }
         print("Could not load the requested website")
-                
     }
    
 }
