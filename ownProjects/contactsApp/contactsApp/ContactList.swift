@@ -8,11 +8,43 @@
 
 import Foundation
 
-struct Contact {
+class Contact: Comparable {
     let name: String
+
+    static func == (lhs: Contact, rhs: Contact) -> Bool {
+        return lhs.name == rhs.name
+    }    
+    
+    static func <(lsh: Contact, rhs: Contact) -> Bool {
+        return lsh.name < rhs.name
+    }
+    
+    static func <=(lsh: Contact, rhs: Contact) -> Bool {
+        return lsh.name <= rhs.name
+    }
+    
+    static func >(lsh: Contact, rhs: Contact) -> Bool {
+        return lsh.name > rhs.name
+    }
+    
+    static func >=(lsh: Contact, rhs: Contact) -> Bool {
+        return lsh.name >= rhs.name
+    }
+    
+    init(name: String) {
+        self.name = name
+    }
 }
 
-struct Initial {
-    let letter: String
-    var appearances: Int
+struct Initial: Comparable {
+    var letter: String
+    var appearances = 1
+    
+    static func < (lhs: Initial, rhs: Initial) -> Bool {
+        return lhs.letter.uppercased() < rhs.letter.uppercased()
+    }
+}
+
+class ContactsList {
+    static var contacts = [Contact]()
 }

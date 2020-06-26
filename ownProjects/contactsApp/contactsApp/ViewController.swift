@@ -9,15 +9,11 @@
 import UIKit
 
 class ViewController: UITableViewController {
+    var delegate: ContactTableProtocol!
     let cellId = "Contact"
     let contacsInfoVCId = "ContactsInfo"
-    let fileName = "contactsPopulate"
-    let fileType = "txt"
     let navigationTitle = "Contacts"
     
-    var fileContent: String!
-    var allContacts = [String]()
-    var contacts = [Contact]()
     var initials = [Initial]()
     var initialsArray: [String] {
         get {
@@ -31,34 +27,46 @@ class ViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
         
         title = navigationTitle
         navigationController?.navigationBar.prefersLargeTitles = true
-        
-        let path = Bundle.main.path(forResource: fileName, ofType: fileType) // file path for file "data.txt"
-        fileContent = try! String(contentsOfFile: path!, encoding: .utf8)
-        
-        readContentFileToArray()
-        countSections()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
     }
     
+    /* DON'T DELETE ME */
+    /*override func viewWillAppear(_ animated: Bool) {
+        //If a view controller is presented by a view controller inside of a popover,
+        this method is not invoked on the presenting view controller after the presented controller is dismissed.
+
+    }*/
+    
+    @objc
+    func addItem() {
+        performSegue(withIdentifier: "contactSegue", sender: self)
+    }
+  
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "contactSegue" {
+            let itemVC = segue.destination as! ItemViewController
+            itemVC.rootVC = self
+        }
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: contacsInfoVCId) as? ContacsInfoViewController
         if let newView = vc {
-            vc?.contactsNameText = retrieveNameFromRow(with: indexPath)
+            vc?.contactsNameText = retrieveNameFromRowHelper(with: indexPath)
             navigationController?.pushViewController(newView, animated: true)
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        cell.textLabel?.text = retrieveNameFromRow(with: indexPath)
+        cell.textLabel?.text = retrieveNameFromRowHelper(with: indexPath)
         return cell
     }
     
-   
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return initialsArray[section]
     }
@@ -75,75 +83,49 @@ class ViewController: UITableViewController {
         return initials.count
     }
      
-    
-    private func countSections() {
-        var contact: Contact!
-        var initial: Initial!
-        var letterCounter = 0
-        var initialLetter = ""
-        for (index, contactsName) in allContacts.enumerated() {
-            if (index == 0) {
-                initialLetter = String(contactsName[contactsName.startIndex])
-                letterCounter += 1
-                // insert current letter for the first time in array of contacts
-                contact = Contact(name: contactsName)
-                initial = Initial(letter: initialLetter, appearances: letterCounter)
-                updateContactListAndLetter(contact!, initial!)
-                continue
-            } else {
-                if (contactsName.hasPrefix(initialLetter) && initialLetter != "") {
-                    letterCounter += 1
-                    // current letter == previous letter -> update amount of appearences
-                    updateLetterAppearences(firstLetter: initialLetter, newNumberOfAppearences: letterCounter)
-                    updateContactListAndLetter(Contact(name: contactsName), nil)
-                } else {
-                    // current letter != previous letter -> insert new letter in array of contacts
-                    initialLetter = String(contactsName[contactsName.startIndex])
-                    letterCounter = 1
-                    contact = Contact(name: contactsName)
-                    initial =  Initial(letter: initialLetter, appearances: letterCounter)
-                    updateContactListAndLetter(contact, initial)
-                }
-            }
-            
+    private func updateListOfInitials(contact: Contact) {
+        // Check if initial already exists
+        if initialsArray.contains(getInitial(contact: contact)) {
+            let initial = getInitial(contact: contact)
+            updateInitialAppearencesHelper(firstLetter: initial)
+        } else {
+            let initialLetter = getInitial(contact: contact)
+            let initial =  Initial(letter: initialLetter)
+            updateInitialsHelper(nameInitial: initial)
         }
-        
-        /*
-        for initial in initials {
-            print("\(initial.letter): \(initial.appearances)")
-        }
-        for contact in contacts {
-            print("\(contact.name)")
-        }*/
     }
     
-    private func readContentFileToArray() {
-        let contactsTemp = fileContent!.split(separator: "\n")
-        for contact in contactsTemp {
-            allContacts.append(String(contact))
-        }
-        // sorting lexicographically
-        allContacts = allContacts.sorted()
+    private func getInitial(contact: Contact) -> String {
+        return String(contact.name[contact.name.startIndex])
     }
     
-    private func updateLetterAppearences(firstLetter: String, newNumberOfAppearences: Int) {
-        initials[initials.firstIndex(where: {$0.letter == firstLetter})!].appearances = newNumberOfAppearences
+    private func updateInitialAppearencesHelper(firstLetter: String) {
+        initials[initials.firstIndex(where: {$0.letter == firstLetter})!].appearances += 1
     }
     
-    private func updateContactListAndLetter(_ contactsName: Contact, _ nameInitial: Initial?) {
-        contacts.append(contactsName)
+    private func updateInitialsHelper(nameInitial: Initial?) {
         if let initial = nameInitial {
             initials.append(initial)
         }
     }
     
-    
-    private func retrieveNameFromRow(with indexPath: IndexPath) -> String {
+    private func retrieveNameFromRowHelper(with indexPath: IndexPath) -> String {
         let letterOfSection = initialsArray[indexPath.section]
-        let firstIndex = contacts.firstIndex(where: {$0.name.hasPrefix(letterOfSection)})!
-        let indexOfName = contacts.index(indexPath.row, offsetBy: firstIndex)
-        return contacts[indexOfName].name
+        let firstIndex = ContactsList.contacts.firstIndex(where: {$0.name.hasPrefix(letterOfSection)})!
+        let indexOfName = ContactsList.contacts.index(indexPath.row, offsetBy: firstIndex)
+        return ContactsList.contacts[indexOfName].name
     }
-    
+}
+
+extension ViewController: ContactTableProtocol {
+    func savedName() {
+        if let contact = ContactsList.contacts.last {
+            updateListOfInitials(contact: contact)
+        }
+        ContactsList.contacts.sort()
+        initials.sort()
+            
+        self.tableView.reloadData()
+    }
 }
 

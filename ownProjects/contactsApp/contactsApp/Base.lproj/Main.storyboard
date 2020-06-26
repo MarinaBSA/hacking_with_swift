@@ -31,6 +31,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ZWK-Cy-jCh"/>
+                    <connections>
+                        <segue destination="9Md-5D-JLL" kind="presentation" identifier="contactSegue" id="87b-zk-kIr"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Deg-kL-9gR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -60,13 +63,74 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C2T-c8-llb"/>
                     </view>
+                    <navigationItem key="navigationItem" id="AkM-V2-E6s"/>
                     <connections>
                         <outlet property="contactsName" destination="Azv-nj-RwT" id="h8L-0I-XLc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UMP-Jh-UhU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1798.5507246376812" y="139.95535714285714"/>
+            <point key="canvasLocation" x="2428" y="140"/>
+        </scene>
+        <!--Item View Controller-->
+        <scene sceneID="NGA-d0-fRT">
+            <objects>
+                <viewController id="9Md-5D-JLL" customClass="ItemViewController" customModule="contactsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NhJ-iy-Ybl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xfv-4L-UAD">
+                                <rect key="frame" x="8" y="78" width="398" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vhe-yh-Efj">
+                                <rect key="frame" x="8" y="120" width="398" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bRm-AC-Zjh">
+                                <rect key="frame" x="361" y="16" width="37" height="30"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneButton:" destination="9Md-5D-JLL" eventType="touchUpInside" id="rUH-Yq-722"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BZG-WR-6uo">
+                                <rect key="frame" x="16" y="16" width="48" height="30"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButton:" destination="9Md-5D-JLL" eventType="touchUpInside" id="FLj-dQ-npH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="xfv-4L-UAD" firstAttribute="leading" secondItem="KBb-y5-9xM" secondAttribute="leading" constant="8" id="2VF-VT-dw1"/>
+                            <constraint firstItem="KBb-y5-9xM" firstAttribute="trailing" secondItem="bRm-AC-Zjh" secondAttribute="trailing" constant="16" id="2vb-wF-Vgu"/>
+                            <constraint firstItem="vhe-yh-Efj" firstAttribute="leading" secondItem="KBb-y5-9xM" secondAttribute="leading" constant="8" id="9sv-19-BK7"/>
+                            <constraint firstItem="bRm-AC-Zjh" firstAttribute="top" secondItem="KBb-y5-9xM" secondAttribute="top" constant="16" id="MGx-8Z-ey5"/>
+                            <constraint firstItem="BZG-WR-6uo" firstAttribute="top" secondItem="KBb-y5-9xM" secondAttribute="top" constant="16" id="Mmw-Fi-Nco"/>
+                            <constraint firstItem="BZG-WR-6uo" firstAttribute="leading" secondItem="KBb-y5-9xM" secondAttribute="leading" constant="16" id="NN7-bv-Hsh"/>
+                            <constraint firstItem="bRm-AC-Zjh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BZG-WR-6uo" secondAttribute="trailing" constant="100" id="Pgv-ZZ-H7B"/>
+                            <constraint firstItem="KBb-y5-9xM" firstAttribute="trailing" secondItem="vhe-yh-Efj" secondAttribute="trailing" constant="8" id="RPP-0B-59r"/>
+                            <constraint firstItem="xfv-4L-UAD" firstAttribute="top" secondItem="BZG-WR-6uo" secondAttribute="bottom" constant="32" id="U24-2M-iSF"/>
+                            <constraint firstItem="vhe-yh-Efj" firstAttribute="top" secondItem="xfv-4L-UAD" secondAttribute="bottom" constant="8" id="kY5-52-itL"/>
+                            <constraint firstItem="KBb-y5-9xM" firstAttribute="trailing" secondItem="xfv-4L-UAD" secondAttribute="trailing" constant="8" id="rfh-1G-fxo"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="KBb-y5-9xM"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="KpR-6o-gbc"/>
+                    <connections>
+                        <outlet property="firstNameTextField" destination="xfv-4L-UAD" id="XGP-pS-8Np"/>
+                        <outlet property="lastNameTextField" destination="vhe-yh-Efj" id="kDJ-lS-daX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o09-pC-YyV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1666.6666666666667" y="139.95535714285714"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="HX7-EG-fB4">
