@@ -15,7 +15,6 @@
 		F1312555248EF58600668648 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1312553248EF58600668648 /* LaunchScreen.storyboard */; };
 		F1D4EF832490088000AA762E /* PersonsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D4EF822490088000AA762E /* PersonsData.swift */; };
 		F1E84D97248FCA0D0074A846 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E84D96248FCA0D0074A846 /* Person.swift */; };
-		F1E84D99248FCE9B0074A846 /* MOCK_DATA.json in Resources */ = {isa = PBXBuildFile; fileRef = F1E84D98248FCE9B0074A846 /* MOCK_DATA.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +28,6 @@
 		F1312556248EF58600668648 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F1D4EF822490088000AA762E /* PersonsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonsData.swift; sourceTree = "<group>"; };
 		F1E84D96248FCA0D0074A846 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		F1E84D98248FCE9B0074A846 /* MOCK_DATA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MOCK_DATA.json; path = ../../../../../../../Downloads/MOCK_DATA.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +69,6 @@
 				F1312556248EF58600668648 /* Info.plist */,
 				F1E84D96248FCA0D0074A846 /* Person.swift */,
 				F1D4EF822490088000AA762E /* PersonsData.swift */,
-				F1E84D98248FCE9B0074A846 /* MOCK_DATA.json */,
 			);
 			path = jsonParsingApp;
 			sourceTree = "<group>";
@@ -135,7 +132,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1312555248EF58600668648 /* LaunchScreen.storyboard in Resources */,
-				F1E84D99248FCE9B0074A846 /* MOCK_DATA.json in Resources */,
 				F1312552248EF58600668648 /* Assets.xcassets in Resources */,
 				F1312550248EF58500668648 /* Main.storyboard in Resources */,
 			);
