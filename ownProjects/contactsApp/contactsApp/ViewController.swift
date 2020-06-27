@@ -52,7 +52,6 @@ class ViewController: UITableViewController {
      }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("huhu")
         tableView.reloadData()
     }
 }

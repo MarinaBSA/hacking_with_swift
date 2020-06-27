@@ -29,7 +29,11 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func cancelButton(_ sender: UIButton) {
-        dismiss(animated: true)
+        if passedContact == nil {
+            dismiss(animated: true)
+            return
+        }
+        navigationController?.popViewController(animated: true)
     }
     
     @IBAction func doneButton(_ sender: UIButton) {
