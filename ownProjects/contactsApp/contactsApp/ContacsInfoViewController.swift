@@ -11,17 +11,28 @@ import UIKit
 class ContacsInfoViewController: UIViewController {
 
     @IBOutlet var contactsName: UITextField!
-    var contactsNameText: String?
+    var passedContact: Contact!
+    var rootVC: ViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     
         title = "Name of Contact" 
         navigationItem.largeTitleDisplayMode = .never
-        if let name = contactsNameText {
-            contactsName.text = name
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let contact = passedContact {
+            contactsName.text = contact.firstName + " " + contact.lastName
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editContactSegue" {
+            let detailVC = segue.destination as! DetailViewController
+            detailVC.passedContact = passedContact
+            detailVC.rootVC = rootVC
+        }
+    }
 
 }

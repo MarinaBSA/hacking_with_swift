@@ -48,18 +48,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Azv-nj-RwT" userLabel="ContactsName">
-                                <rect key="frame" x="20" y="126" width="374" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="374" id="Ja2-vJ-KL4"/>
-                                </constraints>
+                                <rect key="frame" x="16" y="122" width="382" height="34"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNN-gh-Agt">
+                                <rect key="frame" x="368" y="60" width="30" height="30"/>
+                                <state key="normal" title="Edit"/>
+                                <connections>
+                                    <segue destination="9Md-5D-JLL" kind="show" identifier="editContactSegue" id="WlE-cW-Pzf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Azv-nj-RwT" firstAttribute="leading" secondItem="3Bi-jw-sDg" secondAttribute="leadingMargin" id="8eL-BE-UL3"/>
-                            <constraint firstItem="Azv-nj-RwT" firstAttribute="top" secondItem="C2T-c8-llb" secondAttribute="top" constant="82" id="Rmf-zW-5lT"/>
+                            <constraint firstItem="Azv-nj-RwT" firstAttribute="leading" secondItem="C2T-c8-llb" secondAttribute="leading" constant="16" id="1RF-b4-0Vx"/>
+                            <constraint firstItem="Azv-nj-RwT" firstAttribute="top" secondItem="SNN-gh-Agt" secondAttribute="bottom" constant="32" id="HQh-1e-6wM"/>
+                            <constraint firstItem="SNN-gh-Agt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="C2T-c8-llb" secondAttribute="leading" constant="100" id="SBb-Se-jqC"/>
+                            <constraint firstItem="C2T-c8-llb" firstAttribute="trailing" secondItem="SNN-gh-Agt" secondAttribute="trailing" constant="16" id="iVR-Mi-Fga"/>
+                            <constraint firstItem="SNN-gh-Agt" firstAttribute="top" secondItem="C2T-c8-llb" secondAttribute="top" constant="16" id="xBe-w0-Ogd"/>
+                            <constraint firstItem="C2T-c8-llb" firstAttribute="trailing" secondItem="Azv-nj-RwT" secondAttribute="trailing" constant="16" id="xqq-Sq-KYa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="C2T-c8-llb"/>
                     </view>
@@ -70,23 +78,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UMP-Jh-UhU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2428" y="140"/>
+            <point key="canvasLocation" x="2478" y="140"/>
         </scene>
-        <!--Item View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="NGA-d0-fRT">
             <objects>
-                <viewController id="9Md-5D-JLL" customClass="ItemViewController" customModule="contactsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="9Md-5D-JLL" customClass="DetailViewController" customModule="contactsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NhJ-iy-Ybl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xfv-4L-UAD">
-                                <rect key="frame" x="8" y="78" width="398" height="34"/>
+                                <rect key="frame" x="16" y="78" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vhe-yh-Efj">
-                                <rect key="frame" x="8" y="120" width="398" height="34"/>
+                                <rect key="frame" x="16" y="120" width="382" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -104,26 +112,40 @@
                                     <action selector="cancelButton:" destination="9Md-5D-JLL" eventType="touchUpInside" id="FLj-dQ-npH"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfR-oB-5OI">
+                                <rect key="frame" x="0.0" y="210" width="414" height="30"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteButtonPressed:" destination="9Md-5D-JLL" eventType="touchUpInside" id="khv-Vm-pgV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="xfv-4L-UAD" firstAttribute="leading" secondItem="KBb-y5-9xM" secondAttribute="leading" constant="8" id="2VF-VT-dw1"/>
+                            <constraint firstItem="xfv-4L-UAD" firstAttribute="leading" secondItem="KBb-y5-9xM" secondAttribute="leading" constant="16" id="2VF-VT-dw1"/>
                             <constraint firstItem="KBb-y5-9xM" firstAttribute="trailing" secondItem="bRm-AC-Zjh" secondAttribute="trailing" constant="16" id="2vb-wF-Vgu"/>
-                            <constraint firstItem="vhe-yh-Efj" firstAttribute="leading" secondItem="KBb-y5-9xM" secondAttribute="leading" constant="8" id="9sv-19-BK7"/>
+                            <constraint firstItem="vhe-yh-Efj" firstAttribute="leading" secondItem="KBb-y5-9xM" secondAttribute="leading" constant="16" id="9sv-19-BK7"/>
+                            <constraint firstItem="KBb-y5-9xM" firstAttribute="trailing" secondItem="gfR-oB-5OI" secondAttribute="trailing" id="EEp-0e-ZIT"/>
                             <constraint firstItem="bRm-AC-Zjh" firstAttribute="top" secondItem="KBb-y5-9xM" secondAttribute="top" constant="16" id="MGx-8Z-ey5"/>
                             <constraint firstItem="BZG-WR-6uo" firstAttribute="top" secondItem="KBb-y5-9xM" secondAttribute="top" constant="16" id="Mmw-Fi-Nco"/>
                             <constraint firstItem="BZG-WR-6uo" firstAttribute="leading" secondItem="KBb-y5-9xM" secondAttribute="leading" constant="16" id="NN7-bv-Hsh"/>
+                            <constraint firstItem="gfR-oB-5OI" firstAttribute="top" secondItem="vhe-yh-Efj" secondAttribute="bottom" constant="56" id="Omm-pz-VsG"/>
                             <constraint firstItem="bRm-AC-Zjh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BZG-WR-6uo" secondAttribute="trailing" constant="100" id="Pgv-ZZ-H7B"/>
-                            <constraint firstItem="KBb-y5-9xM" firstAttribute="trailing" secondItem="vhe-yh-Efj" secondAttribute="trailing" constant="8" id="RPP-0B-59r"/>
+                            <constraint firstItem="KBb-y5-9xM" firstAttribute="trailing" secondItem="vhe-yh-Efj" secondAttribute="trailing" constant="16" id="RPP-0B-59r"/>
                             <constraint firstItem="xfv-4L-UAD" firstAttribute="top" secondItem="BZG-WR-6uo" secondAttribute="bottom" constant="32" id="U24-2M-iSF"/>
                             <constraint firstItem="vhe-yh-Efj" firstAttribute="top" secondItem="xfv-4L-UAD" secondAttribute="bottom" constant="8" id="kY5-52-itL"/>
-                            <constraint firstItem="KBb-y5-9xM" firstAttribute="trailing" secondItem="xfv-4L-UAD" secondAttribute="trailing" constant="8" id="rfh-1G-fxo"/>
+                            <constraint firstItem="gfR-oB-5OI" firstAttribute="leading" secondItem="KBb-y5-9xM" secondAttribute="leading" id="pi0-5I-cfZ"/>
+                            <constraint firstItem="KBb-y5-9xM" firstAttribute="trailing" secondItem="xfv-4L-UAD" secondAttribute="trailing" constant="16" id="rfh-1G-fxo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="KBb-y5-9xM"/>
                     </view>
                     <navigationItem key="navigationItem" id="KpR-6o-gbc"/>
                     <connections>
+                        <outlet property="deleteButton" destination="gfR-oB-5OI" id="CFu-rF-60x"/>
                         <outlet property="firstNameTextField" destination="xfv-4L-UAD" id="XGP-pS-8Np"/>
                         <outlet property="lastNameTextField" destination="vhe-yh-Efj" id="kDJ-lS-daX"/>
                     </connections>
@@ -151,4 +173,7 @@
             <point key="canvasLocation" x="-8.6956521739130448" y="139.95535714285714"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="WlE-cW-Pzf"/>
+    </inferredMetricsTieBreakers>
 </document>
