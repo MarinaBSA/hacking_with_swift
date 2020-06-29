@@ -39,12 +39,12 @@ class Contact: Comparable {
 }
 
 class Initial: Comparable {
+    var letter: String
+    var appearances = 1
+    
     static func == (lhs: Initial, rhs: Initial) -> Bool {
         return lhs.letter == rhs.letter
     }
-    
-    var letter: String
-    var appearances = 1
     
     static func < (lhs: Initial, rhs: Initial) -> Bool {
         return lhs.letter.uppercased() < rhs.letter.uppercased()
@@ -57,4 +57,25 @@ class Initial: Comparable {
 
 class ContactsList {
     static var contacts = [Contact]()
+    static var filteredContacts = [Contact]()
+}
+
+extension Array where Element == Contact {
+    func filtering(input: String) -> [Contact] {
+        let filteredArray = self.filter({String($0.firstName[$0.firstName.startIndex]) == input || $0.firstName.contains(input)})
+        if !filteredArray.isEmpty  {
+            return filteredArray
+        }
+        return self
+    }
+}
+
+extension Array where Element == Initial {
+    func filtering(letter: String) -> [Initial] {
+        let filteredArray = self.filter({String($0.letter[$0.letter.startIndex]) == String(letter[letter.startIndex])})
+        if !filteredArray.isEmpty  {
+            return filteredArray
+        }
+        return self
+    }
 }

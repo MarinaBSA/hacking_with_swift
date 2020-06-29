@@ -10,7 +10,6 @@ import Foundation
 
 protocol ContactTableProtocol {
     func savedContact()
-    func deletedContact(indexPath: IndexPath)
 }
 
 

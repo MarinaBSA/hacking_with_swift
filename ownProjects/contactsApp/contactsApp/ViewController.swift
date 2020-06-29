@@ -22,6 +22,14 @@ class ViewController: UITableViewController {
         title = navigationTitle
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
+        
+        // Search
+        let searchController = UISearchController()
+        searchController.searchBar.placeholder = "John Doe"
+        searchController.searchResultsUpdater = self
+        searchController.delegate = self
+        navigationItem.searchController = searchController
+        
     }
     
     /* DON'T DELETE ME */
@@ -65,13 +73,26 @@ extension ViewController: ContactTableProtocol {
         dataSource.initials.sort()
         tableView.reloadData()
     }
-    
-    func deletedContact(indexPath: IndexPath) {
-        if tableView.window != nil {
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+}
+
+extension ViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        // first name starts with the inserted letter
+        if let userInput = searchController.searchBar.text, !userInput.isEmpty {
+            dataSource.filterText = searchController.searchBar.text!
+            tableView.reloadData()
         }
-        
+        // last name starts with the inserted letter
     }
 }
+
+extension ViewController: UISearchControllerDelegate {
+    func didDismissSearchController(_ searchController: UISearchController) {
+        dataSource.isFiltering = false
+        tableView.reloadData()
+    }
+}
+   
+
 
 
