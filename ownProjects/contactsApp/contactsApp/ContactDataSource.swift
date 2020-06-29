@@ -12,27 +12,19 @@ class ContactDataSource: NSObject, UITableViewDataSource {
     
     let cellId = "Contact"
 
-    var initials = [Initial]()
-    var filteredInitials = [Initial]()
     var isFiltering = false
 
-    var initialsArray: [String] {
-        get {
-            let initialsArr = isFiltering ? filteredInitials : initials
-            
-            var temp = [String]()
-            for initial in initialsArr {
-                temp.append(initial.letter)
-            }
-            return temp
-        }
-    }
+    var contacts = [Contact]()
+    var filteredContacts = [Contact]()
+       
+    var initials = [String]()
+    var filteredInitials = [String]()
     
     var filterText: String? {
         didSet {
             isFiltering = true
             filteredInitials = initials.filtering(letter: filterText!)
-            ContactsList.filteredContacts = ContactsList.contacts.filtering(input: filterText!)
+            filteredContacts = contacts.filtering(input: filterText!)
         }
     }
  
@@ -44,15 +36,15 @@ class ContactDataSource: NSObject, UITableViewDataSource {
     }
       
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return initialsArray[section]
+        return isFiltering ? filteredInitials[section] : initials[section]
     }
        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isFiltering ? filteredInitials[section].appearances : initials[section].appearances
+        return isFiltering ? getFrequencyOfInitial(sectionLetter: filteredInitials[section]) : getFrequencyOfInitial(sectionLetter: initials[section])
     }
       
     func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return initialsArray
+        return isFiltering ? filteredInitials : initials
     }
       
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -60,26 +52,14 @@ class ContactDataSource: NSObject, UITableViewDataSource {
     }
     
     // Functions //////////////////////////////////////////////////////////////////////////////////
-    func updateListOfInitials(contact: Contact) {
-        // If initial already exists
-        if initialsArray.contains(getInitial(contact: contact)) {
-            let initial = getInitial(contact: contact)
-            updateInitialAppearences(firstLetter: initial, numOfAppearances: 1)
-        } else {
-            let initialLetter = getInitial(contact: contact)
-            let initial =  Initial(letter: initialLetter)
-            updateInitialsHelper(nameInitial: initial)
-        }
-     }
     
     func getContact(indexPath: IndexPath) -> Contact {
-        let letterOfSection = initialsArray[indexPath.section]
-        let contacts: [Contact]!
-        contacts = isFiltering ? ContactsList.filteredContacts : ContactsList.contacts
+        let allContacts = isFiltering ? filteredContacts : contacts
+        let letterOfSection = isFiltering ? filteredInitials[indexPath.section] : initials[indexPath.section]
 
-        let firstIndex = contacts.firstIndex(where: {$0.firstName.hasPrefix(letterOfSection)})!
-        let indexOfName = contacts.index(indexPath.row, offsetBy: firstIndex)
-        return contacts[indexOfName]
+        let firstIndex = allContacts.firstIndex(where: {$0.firstName.hasPrefix(letterOfSection)})!
+        let indexOfName = allContacts.index(indexPath.row, offsetBy: firstIndex)
+        return allContacts[indexOfName]
      }
     
     func retrieveRowText(with indexPath: IndexPath) -> String {
@@ -88,37 +68,37 @@ class ContactDataSource: NSObject, UITableViewDataSource {
     }
     
     func getIndexPath(contact: Contact) -> IndexPath {
-        let section = initialsArray.firstIndex(where: {$0 == String(contact.firstName[contact.firstName.startIndex])})!
+        let section = initials.firstIndex(where: {$0 == String(contact.firstName[contact.firstName.startIndex])})!
         let row = isFiltering ?
-            ContactsList.filteredContacts.distance(from: section, to: (ContactsList.filteredContacts.firstIndex(where: {$0.firstName == contact.firstName && $0.lastName == contact.lastName})!))
-            : ContactsList.contacts.distance(from: section, to: (ContactsList.filteredContacts.firstIndex(where: {$0.firstName == contact.firstName && $0.lastName == contact.lastName})!))
+            filteredContacts.distance(from: section, to: (filteredContacts.firstIndex(where: {$0.firstName == contact.firstName && $0.lastName == contact.lastName})!))
+            : contacts.distance(from: section, to: (contacts.firstIndex(where: {$0.firstName == contact.firstName && $0.lastName == contact.lastName})!))
         return IndexPath(row: row, section: section)
-        
     }
      
-    // Helpers //////////////////////////////////////////////////////////////////////////////////
-     func getInitial(contact: Contact) -> String {
+    func getInitial(contact: Contact) -> String {
         return String(contact.firstName[contact.firstName.startIndex])
      }
      
-    func updateInitialAppearences(firstLetter: String, numOfAppearances: Int) {
-        let initialIndex = isFiltering ? filteredInitials.firstIndex(where: {$0.letter == firstLetter})! : initials.firstIndex(where: {$0.letter == firstLetter})!
-        let initial = initials[initialIndex]
-        initial.appearances += numOfAppearances
-        if initial.appearances == 0 {
-            initials.remove(at: initialIndex)
+     func addInitial(nameInitial: String) {
+        if isFiltering, !filteredInitials.contains(nameInitial) {
+            filteredInitials.append(nameInitial)
+        } else if !initials.contains(nameInitial) {
+            initials.append(nameInitial)
         }
-     }
-     
-     private func updateInitialsHelper(nameInitial: Initial?) {
-        if let initial = nameInitial {
-            if isFiltering {
-                filteredInitials.append(initial)
-                return
-            }
-            initials.append(initial)
+    }
+    
+    func deleteContact(contact: Contact) {
+        contacts.removeAll(where: {$0.firstName == contact.firstName && $0.lastName == contact.lastName})
+        if getFrequencyOfInitial(sectionLetter: getInitial(contact: contact)) == 0 {
+            initials.removeAll(where: {$0 == getInitial(contact: contact)})
         }
-     }
+        
+    }
+    
+    func getFrequencyOfInitial(sectionLetter: String) -> Int {
+        let allContacts = isFiltering ? filteredContacts : contacts
+        return allContacts.filter({getInitial(contact: $0) == sectionLetter}).count
+    }
 }
 
 

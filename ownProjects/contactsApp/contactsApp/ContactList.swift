@@ -20,14 +20,14 @@ class Contact: Comparable {
         return lsh.firstName < rhs.firstName
     }
     
-    static func <=(lsh: Contact, rhs: Contact) -> Bool {
-        return lsh.firstName <= rhs.firstName
-    }
-    
     static func >(lsh: Contact, rhs: Contact) -> Bool {
         return lsh.firstName > rhs.firstName
     }
     
+    static func <=(lsh: Contact, rhs: Contact) -> Bool {
+        return lsh.firstName <= rhs.firstName
+    }
+   
     static func >=(lsh: Contact, rhs: Contact) -> Bool {
         return lsh.firstName >= rhs.firstName
     }
@@ -36,28 +36,6 @@ class Contact: Comparable {
         self.firstName = firstName
         self.lastName = lastName
     }
-}
-
-class Initial: Comparable {
-    var letter: String
-    var appearances = 1
-    
-    static func == (lhs: Initial, rhs: Initial) -> Bool {
-        return lhs.letter == rhs.letter
-    }
-    
-    static func < (lhs: Initial, rhs: Initial) -> Bool {
-        return lhs.letter.uppercased() < rhs.letter.uppercased()
-    }
-    
-    init(letter: String) {
-        self.letter = letter
-    }
-}
-
-class ContactsList {
-    static var contacts = [Contact]()
-    static var filteredContacts = [Contact]()
 }
 
 extension Array where Element == Contact {
@@ -70,9 +48,10 @@ extension Array where Element == Contact {
     }
 }
 
-extension Array where Element == Initial {
-    func filtering(letter: String) -> [Initial] {
-        let filteredArray = self.filter({String($0.letter[$0.letter.startIndex]) == String(letter[letter.startIndex])})
+extension Array where Element == String {
+    func filtering(letter: String) -> [String] {
+        //let filteredArray = self.filter({String($0.letter[$0.letter.startIndex]) == String(letter[letter.startIndex])})
+        let filteredArray = self.filter({$0 == String(letter[letter.startIndex])})
         if !filteredArray.isEmpty  {
             return filteredArray
         }

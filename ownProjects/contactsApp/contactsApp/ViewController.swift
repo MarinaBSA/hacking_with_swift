@@ -29,7 +29,6 @@ class ViewController: UITableViewController {
         searchController.searchResultsUpdater = self
         searchController.delegate = self
         navigationItem.searchController = searchController
-        
     }
     
     /* DON'T DELETE ME */
@@ -66,10 +65,10 @@ class ViewController: UITableViewController {
 
 extension ViewController: ContactTableProtocol {
     func savedContact() {
-        if let contact = ContactsList.contacts.last {
-            dataSource.updateListOfInitials(contact: contact)
+        if let contact = dataSource.contacts.last {
+            dataSource.addInitial(nameInitial: dataSource.getInitial(contact: contact))
         }
-        ContactsList.contacts.sort()
+        dataSource.contacts.sort()
         dataSource.initials.sort()
         tableView.reloadData()
     }
@@ -79,10 +78,16 @@ extension ViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         // first name starts with the inserted letter
         if let userInput = searchController.searchBar.text, !userInput.isEmpty {
-            dataSource.filterText = searchController.searchBar.text!
-            tableView.reloadData()
+            dataSource.filterText = searchController.searchBar.text!.capitalized
+        } else if (searchController.searchBar.text?.isEmpty)! {
+            dataSource.isFiltering = false
         }
+        tableView.reloadData()
         // last name starts with the inserted letter
+    }
+    
+    func deletedContact(contact: Contact) {
+        dataSource.deleteContact(contact: contact)
     }
 }
 

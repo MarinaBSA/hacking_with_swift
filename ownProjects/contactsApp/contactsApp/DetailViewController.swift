@@ -43,7 +43,7 @@ class DetailViewController: UIViewController {
             let lastName = lastNameTextField.text!.capitalized
             
             // The completion handler is called after the viewDidDisappear(_:) method is called on the presented view controller.
-            ContactsList.contacts.append(Contact(firstName: firstName, lastName: lastName))
+            rootVC.dataSource.contacts.append(Contact(firstName: firstName, lastName: lastName))
             // Must use delegate because closing a modal does not call viewDidLoad on the preceding view controller
             rootVC.delegate.savedContact()
             dismiss(animated: true)
@@ -56,9 +56,7 @@ class DetailViewController: UIViewController {
     }
     
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
-        let initial = rootVC.dataSource.getInitial(contact: passedContact)
-        rootVC.dataSource.updateInitialAppearences(firstLetter: initial, numOfAppearances: -1)
-        ContactsList.contacts.removeAll(where: {$0.firstName == passedContact.firstName && $0.lastName == passedContact.lastName})
+        rootVC.delegate.deletedContact(contact: passedContact)
         navigationController?.popToRootViewController(animated: true)
     }
     
