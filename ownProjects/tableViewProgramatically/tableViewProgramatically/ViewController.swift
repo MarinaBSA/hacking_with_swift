@@ -8,11 +8,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
 
+    var dataSource = TableViewDataSource()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        tableView.dataSource = dataSource
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.reuseId)
     }
 
 
