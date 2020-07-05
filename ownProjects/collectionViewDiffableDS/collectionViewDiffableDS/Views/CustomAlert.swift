@@ -16,7 +16,7 @@ class CustomAlert: UIViewController {
     var alertTitle: String!
     var message: String!
     
-    let dismissButtonTitle = "Cancel"
+    let dismissButtonTitle = "No"
     var dismissButton: CustomButton!
     
     let confirmButtonTitle = "Yes"
@@ -40,6 +40,7 @@ class CustomAlert: UIViewController {
     }
     
     private func configure() {
+        view.layer.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.70).cgColor
         configureContainerView()
         configureTitleLabel()
         configureMessageLabel()

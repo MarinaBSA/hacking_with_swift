@@ -38,6 +38,7 @@ class CollectionViewCell: UICollectionViewCell {
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.preferredFont(forTextStyle: .title2)
         titleLabel.adjustsFontForContentSizeCategory = true
+        //titleLabel.adjustsFontSizeToFitWidth      // this breaks the preferredFont, it does not let the text scale
         titleLabel.numberOfLines = 0
     }
     

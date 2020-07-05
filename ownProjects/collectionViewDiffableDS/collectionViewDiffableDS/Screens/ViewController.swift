@@ -25,6 +25,8 @@ class ViewController: UIViewController {
     
     @objc func showDeleteAllItemsAlert() {
         let alert = CustomAlert(title: "Warning", message: "Do you really wanna delete all items?")
+        alert.modalPresentationStyle = .overFullScreen
+        alert.modalTransitionStyle = .crossDissolve
         alert.delegate = self
         present(alert, animated: true)
     }
