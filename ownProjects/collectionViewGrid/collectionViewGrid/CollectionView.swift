@@ -10,7 +10,8 @@ import UIKit
 
 class CollectionView: UICollectionView {
     
-    lazy var collectionLayoutFlow = UICollectionViewFlowLayout()
+    //lazy var collectionLayoutFlow = UICollectionViewFlowLayout()
+    var collectionLayoutFlow = UICollectionViewFlowLayout()
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
