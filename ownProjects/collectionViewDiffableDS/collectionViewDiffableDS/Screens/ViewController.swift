@@ -64,9 +64,7 @@ class ViewController: UIViewController {
     func configureDataSource(with snapshot: diffableSnapshot) {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) {
             (collectionView, indexPath, item) -> UICollectionViewCell? in
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as? CollectionViewCell else {
-                fatalError("Cannot create new cell")
-            }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as? CollectionViewCell else { fatalError("Cannot create new cell") }
             return cell
         }
         dataSource.apply(snapshot, animatingDifferences: true)

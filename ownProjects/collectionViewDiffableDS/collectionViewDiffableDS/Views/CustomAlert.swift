@@ -9,7 +9,7 @@
 import UIKit
 
 class CustomAlert: UIViewController {
-    var delegate: AlertProtocol!
+    weak var delegate: AlertProtocol!
     
     let alertController = UIAlertController()
     let containerView = UIView()
@@ -46,6 +46,7 @@ class CustomAlert: UIViewController {
         configureMessageLabel()
         configureDismissButton()
         configureConfirmButton()
+        
         let tappingOutsideGesture = UITapGestureRecognizer(target: self, action: #selector(dismissAlert))
         view.addGestureRecognizer(tappingOutsideGesture)
     }

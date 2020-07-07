@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol AlertProtocol {
+protocol AlertProtocol: class {
     func radicalActionButtonClicked()
 }
