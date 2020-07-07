@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Contact: Comparable {
+class Contact: Comparable, Codable {
     var firstName: String
     var lastName: String
 
@@ -40,7 +40,9 @@ class Contact: Comparable {
 
 extension Array where Element == Contact {
     func filtering(input: String) -> [Contact] {
-        let filteredArray = self.filter({String($0.firstName[$0.firstName.startIndex]) == input || $0.firstName.contains(input)})
+        let filteredArray = self.filter({String($0.firstName[$0.firstName.startIndex]) == input || $0.firstName.contains(input) || $0.lastName.contains(input)})
+        //let filteredArray = self.filter({$0.firstName.contains(input) || $0.lastName.contains(input)})
+
         if !filteredArray.isEmpty  {
             return filteredArray
         }
@@ -50,7 +52,6 @@ extension Array where Element == Contact {
 
 extension Array where Element == String {
     func filtering(letter: String) -> [String] {
-        //let filteredArray = self.filter({String($0.letter[$0.letter.startIndex]) == String(letter[letter.startIndex])})
         let filteredArray = self.filter({$0 == String(letter[letter.startIndex])})
         if !filteredArray.isEmpty  {
             return filteredArray

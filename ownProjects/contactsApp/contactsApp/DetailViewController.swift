@@ -38,6 +38,7 @@ class DetailViewController: UIViewController {
     
     @IBAction func doneButton(_ sender: UIButton) {
         // Coming from ViewController
+        guard !(firstNameTextField.text?.isEmpty)!, !(lastNameTextField.text?.isEmpty)! else { dismiss(animated: true); return }
         if passedContact == nil {
             let firstName = firstNameTextField.text!.capitalized
             let lastName = lastNameTextField.text!.capitalized
