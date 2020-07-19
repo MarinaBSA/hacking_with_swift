@@ -43,15 +43,17 @@ class ViewController: UIViewController {
        
     func update() {
         let snapshot = setupSnapshot(with: collectionItems)
-        configureDataSource(with: snapshot)
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
     
     func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: CollectionViewHelper.createTwoColumnFlowLayout(in: view))
         view.addSubview(collectionView)
+        collectionView.delegate = self
         collectionView.backgroundColor = .systemBackground
         collectionView.dataSource = dataSource
         collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewCell.reuseIdentifier)
+        configureDataSource()
     }
     
     func setupSnapshot(with items: [Item]) -> diffableSnapshot {
@@ -61,13 +63,13 @@ class ViewController: UIViewController {
         return snapshot
     }
     
-    func configureDataSource(with snapshot: diffableSnapshot) {
+    func configureDataSource() {
         dataSource = UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) {
             (collectionView, indexPath, item) -> UICollectionViewCell? in
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as? CollectionViewCell else { fatalError("Cannot create new cell") }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewCell.reuseIdentifier, for: indexPath) as? CollectionViewCell else { fatalError("Cannot create new cell")
+            }
             return cell
         }
-        dataSource.apply(snapshot, animatingDifferences: true)
     }
 }
 
@@ -75,6 +77,19 @@ extension ViewController: AlertProtocol {
     func radicalActionButtonClicked() {
         guard !collectionItems.isEmpty else { return }
         deleteAllItems()
+    }
+}
+
+extension ViewController: UICollectionViewDelegate {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let height  = scrollView.frame.size.height
+        
+        if offsetY + height > contentHeight + 70 {
+            collectionItems.append(contentsOf: [Item(), Item(), Item(), Item()])
+            update()
+        }
     }
 }
 
