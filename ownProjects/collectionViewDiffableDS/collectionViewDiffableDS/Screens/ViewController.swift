@@ -33,7 +33,9 @@ class ViewController: UIViewController {
    
     func deleteAllItems() {
         collectionItems.removeAll(keepingCapacity: true)
-        update()
+        var currentSnapshot = dataSource.snapshot()
+        currentSnapshot.deleteAllItems()
+        dataSource.apply(currentSnapshot, animatingDifferences: true)
     }
     
     @objc func addItem() {
